@@ -7,20 +7,22 @@
 
 import UIKit
 
+// Protocol to define a delegate for ToDoCell interactions
 protocol ToDoCellDelegate: AnyObject {
-    func checkmarkTapped(sender: ToDoCell)
+    func checkmarkTapped(sender: ToDoCell) // Delegate method for checkmark button tap
 }
 
+// Custom UITableViewCell class for ToDo items
 class ToDoCell: UITableViewCell {
     
-    @IBOutlet var isCompleteButton: UIButton!
-    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var isCompleteButton: UIButton! // Checkmark button outlet
+    @IBOutlet var titleLabel: UILabel! // Label to display the title
     
-    weak var delegate: ToDoCellDelegate?
+    weak var delegate: ToDoCellDelegate? // Delegate to handle interactions
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // Initialization code to set up the cell
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,7 +32,7 @@ class ToDoCell: UITableViewCell {
     }
 
     @IBAction func isCompleteButtonTapped(_ sender: UIButton) {
-        delegate?.checkmarkTapped(sender: self)
+        delegate?.checkmarkTapped(sender: self) // Notify the delegate about checkmark button tap
     }
     
 }
